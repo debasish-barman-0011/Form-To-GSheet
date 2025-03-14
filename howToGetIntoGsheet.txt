@@ -1,20 +1,21 @@
 How to get Data to the Google sheet directly from the HTML FORM without using PHP ?
 
-1. Open Google Sheet (Google Account)
+1. Open Google Sheet (from Google Chrome) [ https://docs.google.com/spreadsheets/ ]
 
 2. New Sheet (create)
 
-3. tittle - (Contact Form)
+3. tittle - (Contact Form or anything else you want to rename)
 
-4. Make sure that the anme fields those are present in the HTML form should be in a proper way in the Google sheet (like - MySQL table)
+4. Make sure that the name fields those are present in the HTML form should be in a proper way in the Google sheet (like - MySQL table)
 
 5. Click on Extension
 
 6.Select App Script
 
-7. untittled( Rename as Contact Form)
+7. untittled( Rename as Contact Form or whatever you want)
 
 8. Use the following Code & Run - 
+
 
 var sheetName = 'Sheet1'
 var scriptProp = PropertiesService.getScriptProperties()
@@ -62,6 +63,7 @@ function doPost (e) {
 
 Now Save Entire Code & Run
 
+
 9. Review Permission
 
 10. Allow Permission
@@ -74,15 +76,14 @@ You will get an URL Copy that..
 
 const scriptURL = "yourURLHere";
 const form = document.forms["submit-to-google-sheet"];
-const msg = document.getElementById("msg");
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   fetch(scriptURL, { method: "POST", body: new FormData(form) })
     .then((response) => {
-      msg.innerHTML = "Message Sent To The ADMIN";
       setTimeout(function () {
         msg.innerHTML = "";
-      }, 4000);
+      }, 2000);
       form.reset();
     })
     .catch((error) => console.error("Error!", error.message));
@@ -97,28 +98,7 @@ Remember there are few things that you need to keep on your mind
 14. make sure that the form Contains the name field as per the Google Sheet and the name attribute of the form tag would be like - 
                     <form name="submit-to-google-sheet">
 
-15. at last add an extra span element 
-
-                    <span id="msg"></span>
-
-16. with the proper css - 
-
-#msg {
-  color: #0038c7;
-  margin-top: -40px;
-  display: block;
-}
-
-17. Apart form that use alert for Showing that message has been sent like- 
-
-document.getElementById("btnSubmit").addEventListener("click", function() {
-  alert("Thank you for reaching out! Click OK to post your message. We'll get back to you as soon as possible.");
-}); 
-
-
-18. Here you need to add btnSubmit as id of your submit button.
-
-19 .Now test your project.
+15 .Now test your project.
 
 
 If face any problem 
@@ -127,6 +107,6 @@ visit - https://github.com/jamiewilson/form-to-google-sheets
 
 Or
 
-20. Contact  - https://dbport.netlify.app
+16. Contact  - https://dbport.netlify.app
 
 
